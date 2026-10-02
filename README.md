@@ -1,216 +1,417 @@
-# BookSocial
+<div align="center">
 
-BookSocial es un proyecto dividido en varias aplicaciones:
+# 📚 BookSocial
 
-- Un backend con Spring Boot que expone la API REST.
-- Un frontend publico con Spring Boot + Thymeleaf.
-- Un panel de administracion con Vue.
-- Una base de datos MySQL levantada con Docker.
+### A full-stack social platform for book lovers
 
-## Estructura del proyecto
+BookSocial combines a social reading community, book catalog, e-commerce features and administration tools in a multi-application architecture.
 
-| Carpeta / archivo | Para que sirve |
-| --- | --- |
-| `booksocial-backend/booksocial-backend` | Backend principal. Contiene la API REST, entidades, servicios, repositorios y seguridad. |
-| `booksocial-frontend` | Frontend publico hecho con Spring Boot y Thymeleaf. |
-| `booksocial-vue` | Panel de administracion hecho con Vue. |
-| `data` | Datos locales de base de datos usados durante el desarrollo. |
-| `docs` | Documentacion y recursos del proyecto. |
-| `scripts` | Scripts y colecciones auxiliares. |
-| `uploads` | Archivos o imagenes subidas por la aplicacion. |
-| `docker-compose.yml` | Configuracion para levantar toda la aplicacion con Docker. |
+<br>
 
-## Arranque con Docker
+![Java](https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![Vue.js](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
 
-Desde la raiz del proyecto:
+</div>
+
+---
+
+## 📖 About BookSocial
+
+**BookSocial** is a full-stack web application designed to create a social experience around books and reading.
+
+The platform allows users to explore books and authors, interact with the community, participate in events, manage their profiles and place orders.
+
+The project also includes a dedicated administration panel for managing the platform's content and business data.
+
+From a technical perspective, BookSocial follows a multi-application architecture composed of a **Spring Boot REST API**, a public **Spring Boot + Thymeleaf frontend**, a **Vue.js administration panel**, and a **MySQL database**.
+
+The entire environment can be deployed locally using **Docker Compose**.
+
+---
+
+## ✨ Main Features
+
+### 👤 Users & Authentication
+
+- User registration and login
+- User profiles
+- Authentication and authorization
+- User management
+- Premium subscriptions
+
+### 📚 Book Platform
+
+- Book/work catalog
+- Authors
+- Publishers
+- Editions
+- Volumes
+- Chapters
+- Detailed book information
+- Book tracking
+
+### 💬 Community
+
+- User comments
+- Reactions
+- Community interactions
+- User profiles
+- Reading-related activity
+
+### 🎟️ Events
+
+- Event listing
+- Event management
+- Community-oriented events
+
+### 🛒 E-commerce
+
+- Product inventory
+- Shopping cart
+- Orders
+- Order lines
+- Order tracking
+- User order history
+
+### ⚙️ Administration
+
+Dedicated **Vue.js administration panel** for managing:
+
+- Books
+- Authors
+- Publishers
+- Editions
+- Volumes
+- Chapters
+- Inventory
+- Orders
+- Users
+- Comments
+- Events
+
+---
+
+## 🏗️ Architecture
+
+BookSocial is divided into several independent applications that communicate with each other.
+
+```text
+                         ┌─────────────────────┐
+                         │        USER         │
+                         └──────────┬──────────┘
+                                    │
+                    ┌───────────────┴───────────────┐
+                    │                               │
+                    ▼                               ▼
+          ┌──────────────────┐            ┌──────────────────┐
+          │      NGINX       │            │   Vue.js Admin   │
+          │    Port 80/443   │            │    Port 8080     │
+          └────────┬─────────┘            └────────┬─────────┘
+                   │                               │
+                   ▼                               │
+        ┌─────────────────────┐                    │
+        │ Spring + Thymeleaf  │                    │
+        │   Public Frontend   │                    │
+        └──────────┬──────────┘                    │
+                   │                               │
+                   └───────────────┬───────────────┘
+                                   │
+                                   ▼
+                       ┌─────────────────────┐
+                       │  Spring Boot REST   │
+                       │         API         │
+                       │      Port 9999      │
+                       └──────────┬──────────┘
+                                  │
+                                  ▼
+                       ┌─────────────────────┐
+                       │        MySQL        │
+                       │      Database       │
+                       └─────────────────────┘
+```
+
+The backend and database operate inside a private Docker network and are accessed through the frontend applications.
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+
+![Java](https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat-square&logo=springboot&logoColor=white)
+![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=flat-square&logo=springsecurity&logoColor=white)
+![Maven](https://img.shields.io/badge/Maven-C71A36?style=flat-square&logo=apachemaven&logoColor=white)
+
+### Frontend
+
+![Thymeleaf](https://img.shields.io/badge/Thymeleaf-005F0F?style=flat-square&logo=thymeleaf&logoColor=white)
+![Vue.js](https://img.shields.io/badge/Vue.js-35495E?style=flat-square&logo=vuedotjs&logoColor=4FC08D)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+
+### Database
+
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
+
+### Infrastructure & Tools
+
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Docker Compose](https://img.shields.io/badge/Docker_Compose-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=nginx&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=postman&logoColor=white)
+
+---
+
+## 📁 Project Structure
+
+```text
+booksocial/
+│
+├── booksocial-backend/
+│   └── booksocial-backend/
+│       └── Spring Boot REST API
+│
+├── booksocial-frontend/
+│   └── Spring Boot + Thymeleaf public frontend
+│
+├── booksocial-vue/
+│   └── Vue.js administration panel
+│
+├── data/
+│   └── MySQL initialization data
+│
+├── docs/
+│   └── Project documentation
+│
+├── scripts/
+│   └── Utility and data export scripts
+│
+├── uploads/
+│   └── Application uploaded files
+│
+├── .env.example
+├── .dockerignore
+├── .gitignore
+├── docker-compose.yml
+│
+└── README.md
+```
+
+---
+
+## 🐳 Running with Docker
+
+The easiest way to run the complete application is using Docker Compose.
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Jorgegf04/booksocial.git
+cd booksocial
+```
+
+### 2. Create the environment file
+
+Copy the example environment configuration:
 
 ```bash
 cp .env.example .env
 ```
 
-Si se quiere probar el envio de correo, rellena `MAIL_USERNAME` y `MAIL_PASSWORD` en `.env`. Para una prueba normal de la aplicacion se pueden dejar vacios.
+Email credentials are optional for normal testing.
+
+If you want to test email functionality, configure:
+
+```env
+MAIL_USERNAME=
+MAIL_PASSWORD=
+```
+
+### 3. Start the application
 
 ```bash
 docker compose up -d --build
 ```
 
-Este comando construye y arranca todos los servicios. La primera vez puede tardar unos minutos porque descarga imagenes y compila los proyectos.
+Docker will build and start all required services.
 
-Si existe un volcado en `data/mysql-init/01-booksocial.sql`, el propio contenedor de MySQL lo importa automaticamente la primera vez que crea la base. Las imagenes subidas por la aplicacion se guardan en `uploads`, por lo que esa carpeta debe viajar junto al proyecto si se quiere conservar el mismo contenido.
+The first startup may take a few minutes while the images and project dependencies are downloaded.
 
-Para comprobar que todo esta funcionando:
+### 4. Check the containers
 
 ```bash
 docker compose ps
 ```
 
-Para parar los contenedores sin borrar datos:
+### 5. Stop the application
 
 ```bash
 docker compose down
 ```
 
-Para parar y borrar tambien la base de datos guardada en volumen:
+To stop the application and remove the database volume:
 
 ```bash
 docker compose down -v
 ```
 
-Despues de `docker compose down -v`, al volver a ejecutar `docker compose up -d --build`, MySQL reimportara `data/mysql-init/01-booksocial.sql` si existe.
+---
 
-## Exportar datos para otra maquina
+## 🐳 Docker Services
 
-En el ordenador que ya tiene los datos cargados, con los contenedores arrancados, ejecuta:
+| Service | Container | Access | Purpose |
+|---|---|---|---|
+| MySQL | `mysql-db` | Internal | Main BookSocial database |
+| Backend API | `backend-api` | Internal `9999` | Spring Boot REST API |
+| Thymeleaf Frontend | `frontend-thymeleaf` | Through Nginx | Public web application |
+| Nginx | `nginx-thymeleaf` | `80 / 443` | Reverse proxy |
+| Vue Frontend | `frontend-vue` | `localhost:8080` | Administration panel |
 
-```powershell
-.\scripts\export-delivery-data.ps1
+The backend and MySQL database are not directly exposed to the host when running the complete Docker environment.
+
+---
+
+## 🌐 Application URLs
+
+Once the application is running:
+
+| URL | Application |
+|---|---|
+| `http://localhost` | Public BookSocial application |
+| `https://localhost` | Public application using local HTTPS |
+| `http://localhost:8080` | Vue administration panel |
+| `http://localhost:8080/api/...` | Backend API through the Vue proxy |
+
+---
+
+## 🖥️ Public Application
+
+Main routes available through the public frontend:
+
+| Route | Description |
+|---|---|
+| `/` | Home |
+| `/catalog` | Book catalog |
+| `/work/{id}` | Book/work details |
+| `/authors` | Authors |
+| `/author/{id}` | Author details |
+| `/community` | Community |
+| `/events` | Events |
+| `/cart` | Shopping cart |
+| `/orders` | User orders |
+| `/user/me` | Current user profile |
+| `/user/{id}` | User profile |
+| `/subscription/premium` | Premium subscription |
+| `/auth/login` | Login |
+| `/auth/register` | Registration |
+| `/auth/logout` | Logout |
+
+---
+
+## ⚙️ Administration Panel
+
+The Vue.js administration panel is available at:
+
+```text
+http://localhost:8080
 ```
 
-Esto genera:
+Main routes:
 
-| Ruta | Contenido |
-| --- | --- |
-| `data/mysql-init/01-booksocial.sql` | Volcado completo de la base de datos MySQL. |
-| `uploads` | Imagenes subidas mediante la aplicacion. |
-
-Despues sube esos cambios a GitHub o incluyelos en el ZIP de entrega. En otro ordenador, si la base esta vacia, Docker importara el SQL automaticamente durante `docker compose up --build`.
-
-Si el otro ordenador ya habia creado el volumen de MySQL antes de tener el SQL, ejecuta:
-
-```bash
-docker compose down -v
-docker compose up -d --build
-```
-
-## Servicios del docker-compose
-
-| Servicio | Contenedor | Puerto / acceso | Descripcion |
-| --- | --- | --- | --- |
-| MySQL | `mysql-db` | Solo interno | Base de datos `booksocial`. No se expone al ordenador directamente. |
-| Backend API | `backend-api` | Solo interno, puerto `9999` | API REST usada por los frontends. |
-| Frontend Thymeleaf | `frontend-thymeleaf` | Publicado por Nginx en `http://localhost` | Aplicacion web publica. |
-| Nginx Thymeleaf | `nginx-thymeleaf` | `80` y `443` | Proxy para abrir el frontend Thymeleaf desde el navegador. |
-| Frontend Vue | `frontend-vue` | `http://localhost:8080` | Panel de administracion. Tambien reenvia `/api` al backend. |
-
-El backend y MySQL estan en una red privada de Docker. Por eso no se abren directamente desde el navegador. Se accede a ellos a traves de los frontends.
-
-## Rutas para abrir la aplicacion
-
-| URL | Aplicacion |
-| --- | --- |
-| `http://localhost` | Frontend publico Thymeleaf |
-| `https://localhost` | Frontend publico Thymeleaf con HTTPS local |
-| `http://localhost:8080` | Panel de administracion Vue |
-| `http://localhost:8080/api/...` | API del backend pasando por el proxy de Vue |
-
-## Rutas principales del frontend publico
-
-Estas rutas se abren desde `http://localhost`:
-
-| Ruta | Pantalla |
-| --- | --- |
-| `/` | Inicio |
-| `/catalog` | Catalogo de obras |
-| `/work/{id}` | Detalle de una obra |
-| `/authors` | Listado de autores |
-| `/author/{id}` | Detalle de un autor |
-| `/community` | Comunidad |
-| `/events` | Eventos |
-| `/cart` | Carrito |
-| `/orders` | Pedidos del usuario |
-| `/user/me` | Perfil del usuario actual |
-| `/user/{id}` | Perfil de un usuario |
-| `/subscription/premium` | Suscripcion premium |
-| `/auth/login` | Inicio de sesion |
-| `/auth/register` | Registro |
-| `/auth/logout` | Cerrar sesion |
-| `/admin` | Panel de administracion Thymeleaf |
-
-## Rutas principales del panel Vue
-
-Estas rutas se abren desde `http://localhost:8080`:
-
-| Ruta | Pantalla |
-| --- | --- |
-| `/login` | Login de administrador |
+| Route | Resource |
+|---|---|
+| `/login` | Administrator login |
 | `/admin/dashboard` | Dashboard |
-| `/admin/obras` | Obras |
-| `/admin/autores` | Autores |
-| `/admin/editoriales` | Editoriales |
-| `/admin/ediciones` | Ediciones |
-| `/admin/tomos` | Tomos |
-| `/admin/capitulos` | Capitulos |
-| `/admin/volumenes` | Volumenes |
-| `/admin/inventario` | Inventario |
-| `/admin/pedidos` | Pedidos |
-| `/admin/usuarios` | Usuarios |
-| `/admin/comentarios` | Comentarios |
-| `/admin/eventos` | Eventos |
+| `/admin/obras` | Books / works |
+| `/admin/autores` | Authors |
+| `/admin/editoriales` | Publishers |
+| `/admin/ediciones` | Editions |
+| `/admin/tomos` | Tomes |
+| `/admin/capitulos` | Chapters |
+| `/admin/volumenes` | Volumes |
+| `/admin/inventario` | Inventory |
+| `/admin/pedidos` | Orders |
+| `/admin/usuarios` | Users |
+| `/admin/comentarios` | Comments |
+| `/admin/eventos` | Events |
 
-## Rutas principales de la API
+---
 
-En Docker, la API no se abre directamente por `localhost:9999`. Para probarla desde el navegador, Postman o scripts, usa:
+## 🔌 REST API
+
+The Spring Boot backend exposes a REST API used by the frontend applications.
+
+When running with Docker, the API can be accessed through:
 
 ```text
 http://localhost:8080/api/...
 ```
 
-Endpoints principales:
+### Main endpoints
 
-| Ruta | Recurso |
-| --- | --- |
-| `/api/auth/login` | Login |
-| `/api/auth/register` | Registro |
-| `/api/users` | Usuarios |
-| `/api/authors` | Autores |
-| `/api/works` | Obras |
-| `/api/editorials` | Editoriales |
-| `/api/editions` | Ediciones |
-| `/api/tomes` | Tomos |
-| `/api/chapters` | Capitulos |
-| `/api/volumes` | Volumenes |
-| `/api/products` | Productos / inventario |
-| `/api/orders` | Pedidos |
-| `/api/order-lines` | Lineas de pedido |
-| `/api/comments` | Comentarios |
-| `/api/reactions` | Reacciones |
-| `/api/events` | Eventos |
-| `/api/subscriptions` | Suscripciones |
-| `/api/tracking-works` | Seguimiento de obras |
-| `/api/tracking-orders` | Seguimiento de pedidos |
-| `/api/upload` | Subida de archivos |
+| Endpoint | Resource |
+|---|---|
+| `/api/auth/login` | Authentication |
+| `/api/auth/register` | User registration |
+| `/api/users` | Users |
+| `/api/authors` | Authors |
+| `/api/works` | Books / works |
+| `/api/editorials` | Publishers |
+| `/api/editions` | Editions |
+| `/api/tomes` | Tomes |
+| `/api/chapters` | Chapters |
+| `/api/volumes` | Volumes |
+| `/api/products` | Products and inventory |
+| `/api/orders` | Orders |
+| `/api/order-lines` | Order lines |
+| `/api/comments` | Comments |
+| `/api/reactions` | Reactions |
+| `/api/events` | Events |
+| `/api/subscriptions` | Subscriptions |
+| `/api/tracking-works` | Book tracking |
+| `/api/tracking-orders` | Order tracking |
+| `/api/upload` | File uploads |
 
-## Ejecutar sin Docker
+---
 
-Tambien se pueden arrancar las aplicaciones por separado:
+## 💻 Running Without Docker
 
-### Backend
+The applications can also be started individually during development.
+
+### Backend API
 
 ```bash
 cd booksocial-backend/booksocial-backend
 mvn spring-boot:run
 ```
 
-URL local:
+Available at:
 
 ```text
 http://localhost:9999
 ```
 
-### Frontend Thymeleaf
+### Thymeleaf Frontend
 
 ```bash
 cd booksocial-frontend
 mvn spring-boot:run
 ```
 
-URL local:
+Available at:
 
 ```text
 http://localhost:8000
 ```
 
-### Frontend Vue
+### Vue Administration Panel
 
 ```bash
 cd booksocial-vue
@@ -218,43 +419,158 @@ npm install
 npm run dev
 ```
 
-URL local habitual:
+Usually available at:
 
 ```text
 http://localhost:5173
 ```
 
-## Comandos utiles
+---
 
-Ver logs de todos los servicios:
+## 💾 Database Initialization
+
+If the following SQL dump exists:
+
+```text
+data/mysql-init/01-booksocial.sql
+```
+
+the MySQL container automatically imports it when the database volume is created for the first time.
+
+To recreate the database from the initialization script:
+
+```bash
+docker compose down -v
+docker compose up -d --build
+```
+
+---
+
+## 📦 Exporting Development Data
+
+A PowerShell utility script is included to prepare development data for another machine.
+
+With the Docker containers running:
+
+```powershell
+.\scripts\export-delivery-data.ps1
+```
+
+The script generates or updates:
+
+```text
+data/mysql-init/01-booksocial.sql
+uploads/
+```
+
+The SQL dump contains the database data while the `uploads` directory contains files uploaded through the application.
+
+---
+
+## 🔧 Useful Docker Commands
+
+### View all logs
 
 ```bash
 docker compose logs -f
 ```
 
-Ver logs de un servicio concreto:
+### Backend logs
 
 ```bash
 docker compose logs -f backend-api
+```
+
+### Public frontend logs
+
+```bash
 docker compose logs -f frontend-thymeleaf
+```
+
+### Vue frontend logs
+
+```bash
 docker compose logs -f frontend-vue
+```
+
+### MySQL logs
+
+```bash
 docker compose logs -f mysql-db
 ```
 
-Reconstruir solo un servicio:
+### Rebuild only the backend
 
 ```bash
 docker compose up -d --build backend-api
+```
+
+### Rebuild only the Thymeleaf frontend
+
+```bash
 docker compose up -d --build frontend-thymeleaf
+```
+
+### Rebuild only the Vue frontend
+
+```bash
 docker compose up -d --build frontend-vue
 ```
 
-Entrar en MySQL desde Docker:
+### Access MySQL from Docker
 
 ```bash
-docker compose exec mysql-db mysql -uroot -proot123 booksocial
+docker compose exec mysql-db mysql -uroot -p booksocial
 ```
 
-## Documentacion y videos de entrega
+---
 
-La documentacion del proyecto esta en `docs` y en esta misma carpeta tambien tiene enlaces para descargar el proyecto en dropbox y desde GitHub.
+## 🎯 What This Project Demonstrates
+
+BookSocial was developed as a full-stack project to apply concepts such as:
+
+- REST API design with Spring Boot
+- Layered backend architecture
+- Relational database modeling
+- Authentication and authorization
+- Backend/frontend communication
+- Server-side rendering with Thymeleaf
+- SPA development with Vue.js
+- Containerized environments with Docker
+- Reverse proxy configuration with Nginx
+- Environment-based configuration
+- Full-stack application integration
+
+---
+
+## 🔮 Future Improvements
+
+Some improvements that can be incorporated into future versions:
+
+- [ ] Increase automated test coverage
+- [ ] Add API documentation with OpenAPI / Swagger
+- [ ] Implement CI/CD with GitHub Actions
+- [ ] Improve application monitoring and logging
+- [ ] Deploy the application to a cloud environment
+- [ ] Improve responsive UI/UX
+- [ ] Add additional community features
+
+---
+
+## 👨‍💻 Author
+
+**Jorge Guijarro**
+
+Junior Backend Developer focused on **Java, Spring Boot, REST APIs and SQL**.
+
+[![GitHub](https://img.shields.io/badge/GitHub-Jorgegf04-181717?style=for-the-badge&logo=github)](https://github.com/Jorgegf04)
+
+---
+
+<div align="center">
+
+### ⭐ If you find this project interesting, feel free to explore the repository.
+
+Built as part of my journey into professional backend development.
+
+</div>
